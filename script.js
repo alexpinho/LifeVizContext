@@ -15,7 +15,7 @@ var svg = d3
 d3.csv(
   "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv",
   function (data) {
-    // List of groups = header of the csv files
+    // List of groups = header of the csv files <----WE NEED THIS
     var keys = data.columns.slice(1);
 
     // Add X axis
