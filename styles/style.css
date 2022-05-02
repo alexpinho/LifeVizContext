@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  position: relative;
+  height: 100vh;
+  background-color: #ffffff;
+  user-select: none;
+}
+
+@font-face {
+  font-family: "GaramondBold";
+  src: url("fonts/GaramondPremrPro-BdDisp.otf");
+}
+
+@font-face {
+  font-family: "GaramondRegular";
+  src: url("fonts/GaramondPremrPro.otf");
+}
+
+@font-face {
+  font-family: "Latitude-Regular";
+  src: url("fonts/Latitude-Regular.woff");
+}
+
+.title {
+  font-family: "Latitude-Regular";
+  font-size: 3rem;
+  color: #000000;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+#my_dataviz {
+  position: relative;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+#sidebar {
+  position: absolute;
+  background-color: white;
+  height: 100vh;
+  right: 0;
+  border-left: 2px solid #848484;
+}
+
+.accordion {
+  width: 300px;
+  margin-top: 3rem;
+}
+
+.accordion .content-box {
+  position: relative;
+  margin: 0px 20px;
+}
+
+.label {
+  font-family: "GaramondRegular";
+  font-size: 1.5rem;
+  position: relative;
+  padding: 10px;
+  color: #000000;
+  cursor: pointer;
+  border-top: 2px solid rgba(241, 241, 241, 0.6);
+}
+
+.accordion .content-box .label::before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 1em;
+}
+
+.accordion .content-box.active .label::before {
+  content: "-";
+}
+
+.accordion .content-box .content {
+  position: relative;
+  font-family: "GaramondRegular";
+  font-size: 1rem;
+  padding: 0 10px 0 10px;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+  overflow-y: auto;
+}
+
+.accordion .content-box.active .content {
+  height: 270px;
+  padding: 10px;
+}
+
+.accordion .content-box .content .content-desc {
+  padding-bottom: 5px;
+}
+.accordion .content-box .content .content-desc img {
+  padding-right: 20px;
+}
+
+.class_1 {
+  font-family: "Latitude-Regular";
+  font-size: 1rem;
+  position: absolute;
+  top: 200px;
+  left: 20px;
+  z-index: 1;
+}
+
+.class_2 {
+  font-family: "Latitude-Regular";
+  font-size: 1rem;
+  position: absolute;
+  top: 400px;
+  left: 20px;
+  z-index: 1;
+}
+
+.class_3 {
+  font-family: "Latitude-Regular";
+  font-size: 1rem;
+  position: absolute;
+  top: 600px;
+  left: 20px;
+  z-index: 1;
+}
+
+.x_axis {
+  font-family: "Latitude-Regular";
+  font-size: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 110px;
+  z-index: 1;
+}
+
+.my-options {
+  width: 300px;
+  position: relative;
+  margin: 40px 20px 0px;
+}
+
+.button {
+  font-family: "GaramondRegular";
+  font-size: 1rem;
+  background-color: #ffffff;
+  border: none;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button:focus {
+  background-color: gray;
+  color: white;
+}
