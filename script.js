@@ -1,3 +1,5 @@
+const dataTable = "./data/LifeExpectancyData_clean.csv";
+
 var margin = { top: 20, right: 30, bottom: 30, left: 60 },
   width = 460 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
@@ -12,72 +14,77 @@ var svg = d3
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv(
-  "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv",
-  function (data) {
-    // List of groups = header of the csv files <----WE NEED THIS
-    var keys = data.columns.slice(1);
+d3.csv("./data/LifeExpectancyData_clean.csv", function (data) {
+  console.log(data);
+});
 
-    // Add X axis
-    var x = d3
-      .scaleLinear()
-      .domain(
-        d3.extent(data, function (d) {
-          return d.year;
-        })
-      )
-      .range([0, width]);
-    svg
-      .append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).ticks(5));
+// Parse the Data
+// d3.csv(
+//   "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv",
+//   function (data) {
+//     // List of groups = header of the csv files <----WE NEED THIS
+//     var keys = data.columns.slice(1);
 
-    // Add Y axis
-    var y = d3.scaleLinear().domain([-100000, 100000]).range([height, 0]);
-    svg.append("g").call(d3.axisLeft(y));
+//     // Add X axis
+//     var x = d3
+//       .scaleLinear()
+//       .domain(
+//         d3.extent(data, function (d) {
+//           return d.year;
+//         })
+//       )
+//       .range([0, width]);
+//     svg
+//       .append("g")
+//       .attr("transform", "translate(0," + height + ")")
+//       .call(d3.axisBottom(x).ticks(5));
 
-    // color palette
-    var color = d3
-      .scaleOrdinal()
-      .domain(keys)
-      .range([
-        "#e41a1c",
-        "#377eb8",
-        "#4daf4a",
-        "#984ea3",
-        "#ff7f00",
-        "#ffff33",
-        "#a65628",
-        "#f781bf",
-      ]);
+//     // Add Y axis
+//     var y = d3.scaleLinear().domain([-100000, 100000]).range([height, 0]);
+//     svg.append("g").call(d3.axisLeft(y));
 
-    //stack the data?
-    var stackedData = d3.stack().offset(d3.stackOffsetSilhouette).keys(keys)(
-      data
-    );
+//     // color palette
+//     var color = d3
+//       .scaleOrdinal()
+//       .domain(keys)
+//       .range([
+//         "#e41a1c",
+//         "#377eb8",
+//         "#4daf4a",
+//         "#984ea3",
+//         "#ff7f00",
+//         "#ffff33",
+//         "#a65628",
+//         "#f781bf",
+//       ]);
 
-    // Show the areas
-    svg
-      .selectAll("mylayers")
-      .data(stackedData)
-      .enter()
-      .append("path")
-      .style("fill", function (d) {
-        return color(d.key);
-      })
-      .attr(
-        "d",
-        d3
-          .area()
-          .x(function (d, i) {
-            return x(d.data.year);
-          })
-          .y0(function (d) {
-            return y(d[0]);
-          })
-          .y1(function (d) {
-            return y(d[1]);
-          })
-      );
-  }
-);
+//     //stack the data?
+//     var stackedData = d3.stack().offset(d3.stackOffsetSilhouette).keys(keys)(
+//       data
+//     );
+
+//     // Show the areas
+//     svg
+//       .selectAll("mylayers")
+//       .data(stackedData)
+//       .enter()
+//       .append("path")
+//       .style("fill", function (d) {
+//         return color(d.key);
+//       })
+//       .attr(
+//         "d",
+//         d3
+//           .area()
+//           .x(function (d, i) {
+//             return x(d.data.year);
+//           })
+//           .y0(function (d) {
+//             return y(d[0]);
+//           })
+//           .y1(function (d) {
+//             return y(d[1]);
+//           })
+//       );
+//   }
+// );
