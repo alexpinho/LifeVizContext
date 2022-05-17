@@ -1,4 +1,4 @@
-Country;Year;Life expectancy ;Adult Mortality;infant deaths;Alcohol;Hepatitis B;Measles ; BMI ;under-five deaths ;Polio;Total expenditure;Diphtheria ; HIV/AIDS;GDP;thinness  1-19 years;thinness 5-9 years;Income composition of resources;Schooling
+Country;Year;Life_expectancy;Adult Mortality;infant deaths;Alcohol;Hepatitis B;Measles ; BMI ;under-five deaths ;Polio;Total expenditure;Diphtheria ; HIV/AIDS;GDP;thinness  1-19 years;thinness 5-9 years;Income composition of resources;Schooling
 Afghanistan;2015;65;263;62;0.01;65;1154;19.1;83;6;8.16;65;0.1;584.25921;17.2;17.3;0.479;10.1
 Afghanistan;2014;59.9;271;64;0.01;62;492;18.6;86;58;8.18;62;0.1;612.696514;17.5;17.5;0.476;10
 Afghanistan;2013;59.9;268;66;0.01;64;430;18.1;89;62;8.13;64;0.1;631.744976;17.7;17.7;0.47;9.9
