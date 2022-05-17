@@ -15,12 +15,14 @@ var svg = d3
 
 let uniqueListOfYears = [];
 
+let selectedAttribute = "Measles ";
+
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
   var dataByCountry = d3.group(
     data,
     (d) => d.Country,
-    (d) => d.Life_expectancy
+    (d) => d[selectedAttribute]
   );
 
   let aggregatedData = d3.group(
@@ -29,32 +31,32 @@ d3.dsv(";", dataTable).then(function (data) {
     (d) => d.Country
   );
 
-  console.log(aggregatedData);
+  console.log("agg", aggregatedData);
 
   let test = Array.from(aggregatedData).map((obj) => {
     return {
       year: new Date(obj[0]),
-      countries: Array.from(obj[1]).map((b) => {
-        let a = {};
-        a[b[0]] = +b[1][0].Life_expectancy;
-        return a;
-        //return {b[0]: b[1][0].Life_expectancy};
-      }),
+      countries: Object.assign(
+        {},
+        ...Array.from(obj[1]).map((b) => {
+          return isNaN(+b[1][0][selectedAttribute])
+            ? { [b[0]]: 0 }
+            : { [b[0]]: +b[1][0][selectedAttribute] };
+        })
+      ),
     };
   });
 
+  console.log("test", test);
   const listOfYears = data.map((d) => d.Year);
   uniqueListOfYears = [...new Set(listOfYears)];
 
   // Add X axis
   const x = d3
-    .scaleLinear()
-    .domain(
-      d3.extent(data, function (d) {
-        return d.Year;
-      })
-    )
+    .scaleTime()
+    .domain(d3.extent(test, (d) => d.year))
     .range([0, width]);
+
   svg
     .append("g")
     .attr("transform", `translate(0, ${height * 0.8})`)
@@ -83,22 +85,23 @@ d3.dsv(";", dataTable).then(function (data) {
     .text("Time (year)");
 
   // Add Y axis
-  const y = d3.scaleLinear().domain([-10000, 10000]).range([height, 0]);
+  const y = d3.scaleLinear().domain([-450000, 450000]).range([0, height]);
 
   // color palette
   const color = d3.scaleOrdinal().domain(dataByCountry).range(d3.schemeDark2);
 
-  const countries = Array.from(dataByCountry.keys());
+  const countries = [...new Set(data.map((d) => d.Country))];
 
   //stack the data?
   const stackedData = d3
     .stack()
-    .offset(d3.stackOffsetSilhouette)
     .keys(countries)
     .value((obj, key) => {
-      //console.log("c", obj);
-      obj.countries[key];
-    });
+      //console.log("c", obj.countries[key]);
+      return obj.countries[key] === undefined ? 0 : obj.countries[key];
+    })
+    .offset(d3.stackOffsetSilhouette)
+    .order(d3.stackOrderInsideOut);
 
   let stacked = stackedData(test);
 
@@ -108,14 +111,15 @@ d3.dsv(";", dataTable).then(function (data) {
   const area = d3
     .area()
     .x(function (d) {
-      return x(d.Year);
+      return x(d.data.year);
     })
     .y0(function (d) {
       return y(d[0]);
     })
     .y1(function (d) {
       return y(d[1]);
-    });
+    })
+    .curve(d3.curveBasis);
 
   // Show the areas
   svg
@@ -123,6 +127,8 @@ d3.dsv(";", dataTable).then(function (data) {
     .data(stacked)
     .join("path")
     .attr("class", "myArea")
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
     .style("fill", "red")
     .attr("d", area);
 });
