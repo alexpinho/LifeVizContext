@@ -1,8 +1,8 @@
 const dataTable = "./data/LifeExpectancyData_clean.csv";
 
 var margin = { top: 20, right: 30, bottom: 30, left: 60 },
-  width = 960 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  width = 1250 - margin.left - margin.right,
+  height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3
@@ -87,9 +87,6 @@ d3.dsv(";", dataTable).then(function (data) {
   // Add Y axis
   const y = d3.scaleLinear().domain([-450000, 450000]).range([0, height]);
 
-  // color palette
-  const color = d3.scaleOrdinal().domain(dataByCountry).range(d3.schemeDark2);
-
   const countries = [...new Set(data.map((d) => d.Country))];
 
   //stack the data?
@@ -106,6 +103,29 @@ d3.dsv(";", dataTable).then(function (data) {
   let stacked = stackedData(test);
 
   console.log("staked", stacked);
+
+  // create a tooltip
+  const Tooltip = svg
+    .append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .style("opacity", 0)
+    .style("font-size", 17);
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  const mouseover = function (event, d) {
+    Tooltip.style("opacity", 1);
+    d3.selectAll(".myArea").style("opacity", 0.2);
+    d3.select(this).style("stroke", "black").style("opacity", 1);
+  };
+  const mousemove = function (event, d, i) {
+    grp = d.key;
+    Tooltip.text(grp);
+  };
+  const mouseleave = function (event, d) {
+    Tooltip.style("opacity", 0);
+    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none");
+  };
 
   // Area generator
   const area = d3
@@ -127,8 +147,9 @@ d3.dsv(";", dataTable).then(function (data) {
     .data(stacked)
     .join("path")
     .attr("class", "myArea")
-    .attr("stroke", "black")
-    .attr("stroke-width", "0.2px")
-    .style("fill", "red")
-    .attr("d", area);
+    .style("fill", "#3A64FA")
+    .attr("d", area)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave);
 });
