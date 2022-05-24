@@ -2,7 +2,7 @@ const dataTable = "./data/LifeExpectancyData_clean.csv";
 
 var margin = { top: 20, right: 30, bottom: 30, left: 60 },
   width = 1250 - margin.left - margin.right,
-  height = 600 - margin.top - margin.bottom;
+  height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3
@@ -35,7 +35,7 @@ d3.dsv(";", dataTable).then(function (data) {
 
   let test = Array.from(aggregatedData).map((obj) => {
     return {
-      year: new Date(obj[0]),
+      year: new String(obj[0]),
       countries: Object.assign(
         {},
         ...Array.from(obj[1]).map((b) => {
@@ -53,22 +53,24 @@ d3.dsv(";", dataTable).then(function (data) {
 
   // Add X axis
   const x = d3
-    .scaleTime()
-    .domain(d3.extent(test, (d) => d.year))
+    .scaleLinear()
+    .domain(
+      d3.extent(test, function (d) {
+        return d.year;
+      })
+    )
     .range([0, width]);
-
   svg
     .append("g")
-    .attr("transform", `translate(0, ${height * 0.8})`)
+    .attr("transform", `translate(0, ${height})`)
     .call(
       d3
         .axisBottom(x)
-        .tickSize(-height * 0.7)
+        .tickSize(-height)
         .tickValues([
           2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
           2011, 2012, 2013, 2014, 2015,
         ])
-        .tickFormat(d3.format("d"))
     )
     .select(".domain")
     .remove();
@@ -81,7 +83,7 @@ d3.dsv(";", dataTable).then(function (data) {
     .append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
-    .attr("y", height - 30)
+    .attr("y", height * 1.2)
     .text("Time (year)");
 
   // Add Y axis
