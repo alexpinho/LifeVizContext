@@ -1,6 +1,6 @@
 const dataTable = "./data/LifeExpectancyData_clean.csv";
 
-var margin = { top: 20, right: 30, bottom: 30, left: 60 },
+var margin = { top: 20, right: 0, bottom: 20, left: 80 },
   width = 1250 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -15,7 +15,12 @@ var svg = d3
 
 let uniqueListOfYears = [];
 
-let selectedAttribute = "Measles ";
+//let selectedAttribute = "Hepatitis B";
+
+let selectedAttribute = d3
+  .selectAll('input[name="radio"]:checked').node().value;
+
+
 
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
@@ -110,9 +115,12 @@ d3.dsv(";", dataTable).then(function (data) {
   // create a tooltip
   const Tooltip = svg
     .append("text")
-    .attr("x", 0)
+    .attr("x", 500)
     .attr("y", 0)
+    .style("fill", "#3a64fa")
     .style("opacity", 0)
+    .style("font-family", "Telegraf-Regular")
+    .style("letter-spacing", "0.05em")
     .style("font-size", 17);
 
   // Three function that change the tooltip when user hover / move / leave a cell
@@ -129,6 +137,21 @@ d3.dsv(";", dataTable).then(function (data) {
     Tooltip.style("opacity", 0);
     d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none");
   };
+
+
+  // Show text attribute for visualization
+  let showAttribute = svg
+    .append("text")
+    .attr("x", 900)
+    .attr("y", 0)
+    .style("fill", "#141414")
+    .style("opacity", 1)
+    .style("font-family", "Telegraf-Regular")
+    .style("letter-spacing", "0.05em")
+    .style("font-size", 17);
+
+  showAttribute.text(selectedAttribute);
+
 
   // Area generator
   const area = d3
