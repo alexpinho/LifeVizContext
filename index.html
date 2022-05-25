@@ -8,7 +8,9 @@
     <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
     <title>Life Viz Context</title>
   </head>
+  
   <body>
+    
     <div class="intro-section">
       <h1 class="intro-section-title">Life Viz Context</h1>
       <p class="intro-section-description">
@@ -18,14 +20,196 @@
 
     <div id="my_dataviz"></div>
 
-    <div class="filter-section-options">
-      <div class="filter-section-options-title-big">Continent</div>
-      <div class="filter-section-options-title-big">Immunization</div>
-      <div class="filter-section-options-title">Mortality</div>
-      <div class="filter-section-options-title">Economics</div>
-      <div class="filter-section-options-title">Social</div>
+    <div class="filter-section">
+      <div class="filter-section-attributes">
+        <div class="filter-section-attributes-categorie" id="categorie-01">
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Africa
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Asia
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Australia
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Europe
+            </label>
+          </div>
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              North-America
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              South-America
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section-attributes-categorie" id="categorie-02">
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" value="Hepatitis B" />
+              <span class="attribute"></span>
+              Hepatitis B
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" value="Measles" />
+              <span class="attribute"></span>
+              Measles
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              BMI
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Poliomielite
+            </label>
+          </div>
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Diphtheria
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              HIV/AIDS
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section-attributes-categorie" id="categorie-03">
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Adult Mortality
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Infant Deaths
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Under-five
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section-attributes-categorie" id="categorie-04">
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Income
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              GDP
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Health Expend.
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section-attributes-categorie" id="categorie-05">
+          <div class="filter-section-attributes-col">
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Thinness (10-19)
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Thinness (5-9)
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Schooling
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="radio" />
+              <span class="attribute"></span>
+              Alcohol Consumpt.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-section-options">
+        <div class="filter-section-options-title-big" id="continents">
+          Continent
+        </div>
+        <div class="filter-section-options-title-big">Immunization</div>
+        <div class="filter-section-options-title">Mortality</div>
+        <div class="filter-section-options-title">Economics</div>
+        <div class="filter-section-options-title">Social</div>
+      </div>
     </div>
 
-    <script type="text/javascript" src="script.js"></script>
+    <div class="about-section">
+      <div class="about-section-container">
+        <div class="about-section-project">
+          <h1 class="intro-section-title">The Project</h1>
+          <p>
+            When we think of average life expectancy, we think of health, but
+            the truth is that there are more elements in the equation that can
+            be crucial. How can we identify these elements and analyze them?
+            What are the societal factors that most influence the life
+            expectancy of a citizen? In which ones is there a possibility of
+            immediate intervention? And finally, once defined, what is their
+            distribution in time and space? </br></br> These are the questions that we
+            propose to deepen with the implementation of this project.
+          </p>
+        </div>
+        <div class="about-section-us"></div>
+        <h1 class="intro-section-title">The Team</h1>
+      </div>
+    </div>
+
+    
   </body>
+
+  <script type="text/javascript" src="script.js"></script>
 </html>

@@ -2,15 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 body {
-  display: grid;
+  /*display: grid;*/
   position: relative;
   height: 100vh;
   background-color: #ffffff;
   user-select: none;
+  letter-spacing: 0.05em;
+}
+
+p {
+  font-family: "Telegraf-Regular";
+  font-size: 1rem;
+  color: #141414;
+  line-height: 170%;
+  padding-top: 0.5rem;
 }
 
 @font-face {
@@ -23,7 +32,7 @@ body {
   src: url("fonts/Telegraf-Bold.woff");
 }
 
-.intro-section{
+.intro-section {
   margin-left: 5rem;
   margin-top: 2rem;
 }
@@ -32,21 +41,18 @@ body {
   font-family: "Telegraf-Bold";
   text-transform: uppercase;
   font-size: 2rem;
-  color: #3A64FA;
-  letter-spacing: 0.05em;
+  color: #3a64fa;
 }
 
 .intro-section-description {
   font-family: "Telegraf-Regular";
   font-size: 1rem;
   color: #141414;
-  letter-spacing: 0.05em;
   padding-top: 0.5rem;
 }
 
 #my_dataviz {
   position: relative;
-  margin-left: 50px;
   margin-top: 20px;
 }
 
@@ -54,36 +60,130 @@ body {
 /* //////////////////////////////////////////////////////// F I L T E R //////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-.filter-section-options{
+.filter-section {
+  margin: 0 10rem 2rem 5rem;
+  color: #141414;
+}
+
+.filter-section-attributes {
+  display: flex;
+  font-family: "Telegraf-Regular";
+  font-size: 0.8rem;
+  border: 1.5px solid #141414;
+  padding: 0.7rem 0 0.7rem 0;
+  margin-bottom: 1rem;
+}
+
+.filter-section-attributes-categorie {
+  display: flex;
+  flex-direction: row;
+  border-right: 1.5px solid #141414;
+}
+
+#categorie-01 {
+  padding-right: 1rem;
+}
+#categorie-02 {
+  padding-right: 2rem;
+}
+#categorie-03 {
+  padding-right: 4rem;
+}
+#categorie-04 {
+  padding-right: 4rem;
+}
+
+#categorie-05 {
+  border-right: none;
+}
+
+.filter-section-attributes-col {
+  margin: 0 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-section-options {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.filter-section-options-title{
-  width:10rem;
+  justify-content: space-between;
+  gap: 0.5rem;
   text-align: center;
   font-family: "Telegraf-Bold";
   text-transform: uppercase;
   font-size: 0.875rem;
-  color: #141414;
-  letter-spacing: 0.05em;
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  border: 2px solid #141414;
 }
 
-.filter-section-options-title-big{
-  width:20rem;
-  text-align: center;
-  font-family: "Telegraf-Bold";
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  color: #141414;
-  letter-spacing: 0.05em;
+.filter-section-options-title {
+  width: 15rem;
   padding: 0.5rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  border: 2px solid #141414;
+  border: 1.5px solid #141414;
 }
+
+.filter-section-options-title-big {
+  width: 20rem;
+  padding: 0.5rem;
+  border: 1.5px solid #141414;
+}
+
+#continents {
+  color: #3a64fa;
+  border: 1.5px solid #3a64fa;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////// B U TT O N S //////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.attribute {
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radio-button input:checked ~ .attribute {
+  background-color: #3a64fa;
+}
+
+.attribute:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-button input:checked ~ .attribute:after {
+  display: block;
+}
+
+.radio-button .attribute:after {
+  /*style indicator*/
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////// A B O U T //////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+.about-section-container {
+  margin: 5rem 10rem 2rem 5rem;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+  display: flex;
+}
+
+.about-section-project {
+  width: 40vw;
+  margin-right: 5rem;
+}
+
+.about-section-project h1{
+  margin-bottom: 1rem;
+}
+
