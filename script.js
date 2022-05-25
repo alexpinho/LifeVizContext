@@ -75,14 +75,6 @@ d3.dsv(";", dataTable).then(function (data) {
   // Customization
   svg.selectAll(".tick line").attr("stroke", "#B4B4B4");
 
-  // Add X axis label:
-  svg
-    .append("text")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height * 1.2)
-    .text("Time (year)");
-
   // Add Y axis
   const y = d3.scaleLinear().domain([-450000, 450000]).range([0, height]);
 
