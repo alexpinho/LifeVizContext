@@ -17,19 +17,10 @@ let uniqueListOfYears = [];
 
 //let selectedAttribute = "Hepatitis B";
 
-let selectedAttribute = d3
-  .selectAll('input[name="radio"]:checked').node().value;
-
-
+let selectedAttribute = "Measles";
 
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
-  var dataByCountry = d3.group(
-    data,
-    (d) => d.Country,
-    (d) => d[selectedAttribute]
-  );
-
   let aggregatedData = d3.group(
     data,
     (d) => d.Year,
@@ -138,7 +129,6 @@ d3.dsv(";", dataTable).then(function (data) {
     d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none");
   };
 
-
   // Show text attribute for visualization
   let showAttribute = svg
     .append("text")
@@ -151,7 +141,6 @@ d3.dsv(";", dataTable).then(function (data) {
     .style("font-size", 17);
 
   showAttribute.text(selectedAttribute);
-
 
   // Area generator
   const area = d3
