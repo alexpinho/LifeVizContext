@@ -14,12 +14,15 @@ body {
   letter-spacing: 0.05em;
 }
 
+a{
+  text-decoration: none;
+}
+
 p {
   font-family: "Telegraf-Regular";
   font-size: 1rem;
   color: #141414;
   line-height: 170%;
-  padding-top: 0.5rem;
 }
 
 @font-face {
@@ -169,8 +172,6 @@ p {
 /* //////////////////////////////////////////////////////// A B O U T //////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-
-
 .about-section-container {
   margin: 5rem 10rem 2rem 5rem;
   padding-top: 5rem;
@@ -183,7 +184,38 @@ p {
   margin-right: 5rem;
 }
 
-.about-section-project h1{
-  margin-bottom: 1rem;
+.about-section h1 {
+  margin-bottom: 3rem;
 }
 
+.about-section-us {
+  width: 50vw;
+  height: 40vh;
+}
+
+.about-section-us-profile{
+  display: flex;
+}
+
+.about-section-us-profile p{
+  margin-right: 2rem;
+}
+
+.about-section-us-profile a{
+  color: #b4b4b4;
+  position: absolute;
+  text-decoration: underline;
+  margin-top: 3rem;
+}
+
+#ricardo{
+  margin-right: 0;
+}
+
+.degree{
+  font-size: 0.8rem;
+}
+
+.nome{
+  font-size: 1.6rem;
+}

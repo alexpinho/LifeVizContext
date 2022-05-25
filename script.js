@@ -124,7 +124,7 @@ d3.dsv(";", dataTable).then(function (data) {
   const mouseover = function (event, d) {
     Tooltip.style("opacity", 1);
     d3.selectAll(".myArea").style("opacity", 0.2);
-    d3.select(this).style("stroke", "#B4B4B4").style("opacity", 1);
+    d3.select(this).style("stroke", "black").style("opacity", 1);
   };
   const mousemove = function (event, d, i) {
     grp = d.key;
