@@ -1,6 +1,6 @@
 const dataTable = "./data/LifeExpectancyData_clean.csv";
 
-var margin = { top: 20, right: 0, bottom: 20, left: 80 },
+var margin = { top: 20, right: 30, bottom: 30, left: 60 },
   width = 1250 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -17,7 +17,9 @@ let uniqueListOfYears = [];
 
 //let selectedAttribute = "Hepatitis B";
 
-let selectedAttribute = "Measles";
+let selectedAttribute = d3
+  .selectAll('input[name="radio"]:checked')
+  .node().value;
 
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
