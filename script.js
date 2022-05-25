@@ -15,12 +15,6 @@ var svg = d3
 
 let uniqueListOfYears = [];
 
-//let selectedAttribute = "Hepatitis B";
-
-let selectedAttribute = d3
-  .selectAll('input[name="radio"]:checked')
-  .node().value;
-
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
   let aggregatedData = d3.group(
@@ -30,6 +24,10 @@ d3.dsv(";", dataTable).then(function (data) {
   );
 
   console.log("agg", aggregatedData);
+
+  let selectedAttribute = d3
+    .selectAll('input[name="radio"]:checked')
+    .node().value;
 
   let test = Array.from(aggregatedData).map((obj) => {
     return {
@@ -160,5 +158,10 @@ d3.dsv(";", dataTable).then(function (data) {
     .attr("d", area)
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave);
+    .on("mouseleave", mouseleave)
+    .on("click", update());
 });
+
+function update(sellectedAttribute) {
+  console.log(sellectedAttribute);
+}
