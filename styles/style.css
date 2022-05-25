@@ -47,16 +47,29 @@ p {
   color: #3a64fa;
 }
 
-.intro-section-description {
+.text-description {
   font-family: "Telegraf-Regular";
   font-size: 1rem;
   color: #141414;
+  letter-spacing: 0.05em;
+}
+
+.intro-section-description {
   padding-top: 0.5rem;
 }
 
 #my_dataviz {
   position: relative;
   margin-top: 20px;
+}
+
+.xAxis-label{
+  position: relative;
+}
+
+.xAxis-label-title{
+  position: absolute;
+  right: 10rem;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
