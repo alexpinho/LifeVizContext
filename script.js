@@ -1,6 +1,6 @@
 const dataTable = "./data/LifeExpectancyData_clean.csv";
 
-var margin = { top: 20, right: 0, bottom: 20, left: 80 },
+var margin = { top: 20, right: 30, bottom: 30, left: 60 },
   width = 1250 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -15,10 +15,6 @@ var svg = d3
 
 let uniqueListOfYears = [];
 
-//let selectedAttribute = "Hepatitis B";
-
-let selectedAttribute = "Measles";
-
 // Group Countries
 d3.dsv(";", dataTable).then(function (data) {
   let aggregatedData = d3.group(
@@ -28,6 +24,10 @@ d3.dsv(";", dataTable).then(function (data) {
   );
 
   console.log("agg", aggregatedData);
+
+  let selectedAttribute = d3
+    .selectAll('input[name="radio"]:checked')
+    .node().value;
 
   let test = Array.from(aggregatedData).map((obj) => {
     return {
@@ -74,14 +74,6 @@ d3.dsv(";", dataTable).then(function (data) {
 
   // Customization
   svg.selectAll(".tick line").attr("stroke", "#B4B4B4");
-
-  // Add X axis label:
-  svg
-    .append("text")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height * 1.2)
-    .text("Time (year)");
 
   // Add Y axis
   const y = d3.scaleLinear().domain([-450000, 450000]).range([0, height]);
@@ -155,7 +147,6 @@ d3.dsv(";", dataTable).then(function (data) {
       return y(d[1]);
     })
     .curve(d3.curveBasis);
-
   // Show the areas
   svg
     .selectAll("mylayers")
@@ -166,5 +157,6 @@ d3.dsv(";", dataTable).then(function (data) {
     .attr("d", area)
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave);
+    .on("mouseleave", mouseleave)
+    .on("click", update());
 });
